@@ -40,3 +40,17 @@ new_user_data = {
 # 注册新用户
 result = register_user(new_user_data)
 print(result)
+
+# 尝试注册一个无效用户
+invalid_user_data = {
+    "username": "tu",
+    "email": "invalid-email",
+    "password": "short"
+}
+
+result = register_user(invalid_user_data)
+print(result)
+
+"""
+{'status': 'error', 'errors': [{'type': 'string_too_short', 'loc': ('username',), 'msg': 'String should have at least 3 characters', 'input': 'tu', 'ctx': {'min_length': 3}, 'url': 'https://errors.pydantic.dev/2.8/v/string_too_short'}, {'type': 'value_error', 'loc': ('email',), 'msg': 'value is not a valid email address: An email address must have an @-sign.', 'input': 'invalid-email', 'ctx': {'reason': 'An email address must have an @-sign.'}}, {'type': 'string_too_short', 'loc': ('password',), 'msg': 'String should have at least 8 characters', 'input': 'short', 'ctx': {'min_length': 8}, 'url': 'https://errors.pydantic.dev/2.8/v/string_too_short'}]}
+"""
